@@ -52,7 +52,7 @@ const TextBlockWithImage: Module<ITextBlockWithImage> = ({module}) => {
 	const priority = module.fields.highPriority === "true"
 
 	return (
-		<div className="relative px-8">
+		<div className="relative px-8" data-agility-component={module.contentID}>
 			<div className="flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24 items-center">
 				<div className="md:w-6/12 flex-shrink-0 relative ">
 					{fields.primaryButton ? (

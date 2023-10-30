@@ -56,6 +56,7 @@ export const resolveAgilityMetaData = async ({ agilityData, locale, sitemap, isD
 
 	let otherMetaData: { [name: string]: string } = {}
 
+
 	if (metaHTML) {
 		const additionalHeaderMarkup = ReactHtmlParser(metaHTML)
 
@@ -100,6 +101,7 @@ export const resolveAgilityMetaData = async ({ agilityData, locale, sitemap, isD
 		openGraph: {
 			images: ogImages,
 		},
+
 		generator: `Agility CMS`,
 		other: otherMetaData
 

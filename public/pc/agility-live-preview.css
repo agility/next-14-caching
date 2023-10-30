@@ -1,0 +1,35 @@
+body.agility-live-preview {
+	.agility-component {
+		position: relative;
+		.agility-component-inner {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			transition: all 0.2s ease-in-out;
+			border: 2px dashed #9ca3afaa;
+			pointer-events: none;
+
+			.agility-component-edit {
+				transition: all 0.2s ease-in-out;
+				position: absolute;
+				background: #9ca3afaa;
+				color: white;
+				padding: 5px 10px;
+				top: 0px;
+				right: 0px;
+				text-align: center;
+				&:hover {
+					background: red;
+				}
+			}
+			&:hover {
+				border: 2px dashed #9ca3afff;
+				.agility-component-edit:hover {
+					background: #9ca3afff;
+				}
+			}
+		}
+	}
+}

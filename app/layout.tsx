@@ -8,7 +8,9 @@ import {Inter} from "next/font/google"
 
 import "/styles/globals.css"
 import "/styles/nprogress.min.css"
+
 import {getHeaderContent} from "lib/cms-content/getHeaderContent"
+import Script from "next/script"
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -24,7 +26,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
 
 	return (
 		<html lang="en" className={inter.className}>
-			<body>
+			<body data-agility-guid={process.env.AGILITY_GUID}>
 				<div id="site-wrapper">
 					{isPreviewRequested && <LoadingWidget message="Loading Preview Mode" />}
 					{!isPreviewRequested && (
@@ -38,6 +40,8 @@ export default async function RootLayout({children}: {children: React.ReactNode}
 						</div>
 					)}
 				</div>
+				{/* //TODO: pull this script from NPM eventuall, or CDN */}
+				<Script async src="/pc/agility-live-preview.js" />
 			</body>
 		</html>
 	)
