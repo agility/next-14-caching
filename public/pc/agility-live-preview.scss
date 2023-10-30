@@ -1,0 +1,74 @@
+body.agility-live-preview {
+	.agility-component {
+		position: relative;
+		transition: all 0.2s ease-in-out;
+		border: 2px dashed #9ca3af00;
+
+		&:hover {
+			border: 2px dashed #9ca3afff;
+			.agility-component-edit {
+				background: #9ca3afff;
+				opacity: 1;
+			}
+			.agility-field {
+				border: 1px dotted #9ca3afaa;
+			}
+		}
+
+		.agility-component-edit {
+			transition: all 0.2s ease-in-out;
+			position: absolute;
+			background: #9ca3afaa;
+			border-radius: 0 0 0 4px;
+			color: white;
+			padding: 5px 10px;
+			top: 0px;
+			right: 0px;
+			height: 30px;
+			width: 40px;
+			text-align: center;
+			opacity: 0;
+			&:hover {
+				background: #691ad8;
+			}
+			img {
+				margin: 0;
+			}
+		}
+
+		.agility-field {
+			position: relative;
+			transition: all 0.2s ease-in-out;
+			border: 1px solid #691ad800;
+			&:hover {
+				border: 1px solid #691ad8ff;
+				.agility-field-edit {
+					opacity: 1;
+				}
+			}
+
+			.agility-field-edit {
+				transition: all 0.2s ease-in-out;
+				position: absolute;
+				background: #9ca3afaa;
+				border-radius: 0 0 0 4px;
+				color: white;
+				padding: 5px 10px;
+				top: 0px;
+				right: 0px;
+				height: 30px;
+				width: 40px;
+				text-align: center;
+				opacity: 0;
+
+				&:hover {
+					background: #691ad8;
+				}
+
+				img {
+					margin: 0;
+				}
+			}
+		}
+	}
+}

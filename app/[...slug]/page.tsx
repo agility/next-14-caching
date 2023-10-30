@@ -38,12 +38,12 @@ export default async function Page({params, searchParams}: PageProps) {
 	const AgilityPageTemplate = getPageTemplate(agilityData.pageTemplateName || "")
 
 	return (
-		<>
+		<div data-agility-page={agilityData.page?.pageID} data-agility-dynamic-content={agilityData.sitemapNode.contentID}>
 			{AgilityPageTemplate && <AgilityPageTemplate {...agilityData} />}
 			{!AgilityPageTemplate && (
 				// if we don't have a template for this page, show an error
 				<InlineError message={`No template found for page template name: ${agilityData.pageTemplateName}`} />
 			)}
-		</>
+		</div>
 	)
 }

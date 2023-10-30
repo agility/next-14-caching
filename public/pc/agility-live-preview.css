@@ -1,35 +1,68 @@
-body.agility-live-preview {
-	.agility-component {
-		position: relative;
-		.agility-component-inner {
-			position: absolute;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-			transition: all 0.2s ease-in-out;
-			border: 2px dashed #9ca3afaa;
-			pointer-events: none;
-
-			.agility-component-edit {
-				transition: all 0.2s ease-in-out;
-				position: absolute;
-				background: #9ca3afaa;
-				color: white;
-				padding: 5px 10px;
-				top: 0px;
-				right: 0px;
-				text-align: center;
-				&:hover {
-					background: red;
-				}
-			}
-			&:hover {
-				border: 2px dashed #9ca3afff;
-				.agility-component-edit:hover {
-					background: #9ca3afff;
-				}
-			}
-		}
-	}
+body.agility-live-preview .agility-component {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  border: 2px dashed rgba(156, 163, 175, 0);
 }
+body.agility-live-preview .agility-component:hover {
+  border: 2px dashed #9ca3af;
+}
+body.agility-live-preview .agility-component:hover .agility-component-edit {
+  background: #9ca3af;
+  opacity: 1;
+}
+body.agility-live-preview .agility-component:hover .agility-field {
+  border: 1px dotted rgba(156, 163, 175, 0.6666666667);
+}
+body.agility-live-preview .agility-component .agility-component-edit {
+  transition: all 0.2s ease-in-out;
+  position: absolute;
+  background: rgba(156, 163, 175, 0.6666666667);
+  border-radius: 0 0 0 4px;
+  color: white;
+  padding: 5px 10px;
+  top: 0px;
+  right: 0px;
+  height: 30px;
+  width: 40px;
+  text-align: center;
+  opacity: 0;
+}
+body.agility-live-preview .agility-component .agility-component-edit:hover {
+  background: #691ad8;
+}
+body.agility-live-preview .agility-component .agility-component-edit img {
+  margin: 0;
+}
+body.agility-live-preview .agility-component .agility-field {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid rgba(105, 26, 216, 0);
+}
+body.agility-live-preview .agility-component .agility-field:hover {
+  border: 1px solid #691ad8;
+}
+body.agility-live-preview .agility-component .agility-field:hover .agility-field-edit {
+  opacity: 1;
+}
+body.agility-live-preview .agility-component .agility-field .agility-field-edit {
+  transition: all 0.2s ease-in-out;
+  position: absolute;
+  background: rgba(156, 163, 175, 0.6666666667);
+  border-radius: 0 0 0 4px;
+  color: white;
+  padding: 5px 10px;
+  top: 0px;
+  right: 0px;
+  height: 30px;
+  width: 40px;
+  text-align: center;
+  opacity: 0;
+}
+body.agility-live-preview .agility-component .agility-field .agility-field-edit:hover {
+  background: #691ad8;
+}
+body.agility-live-preview .agility-component .agility-field .agility-field-edit img {
+  margin: 0;
+}
+
+/*# sourceMappingURL=agility-live-preview.css.map */

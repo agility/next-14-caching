@@ -5,6 +5,8 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
+		"sass": "sass ./public/pc/agility-live-preview.scss ./public/pc/agility-live-preview.css",
+		"sass-w": "sass ./public/pc/agility-live-preview.scss ./public/pc/agility-live-preview.css --watch",
 		"start": "next start",
 		"lint": "next lint"
 	},

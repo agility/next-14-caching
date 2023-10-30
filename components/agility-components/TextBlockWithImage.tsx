@@ -94,14 +94,23 @@ const TextBlockWithImage: Module<ITextBlockWithImage> = ({module}) => {
 				>
 					<div className="g:py-8 text-center md:text-left">
 						{fields.tagline && (
-							<span className="font-bold text-primary-500 text-sm text-center md:text-left uppercase">
+							<div
+								data-agility-field="tagline"
+								className="font-bold text-primary-500 text-sm text-center md:text-left uppercase py-1"
+							>
 								{fields.tagline}
-							</span>
+							</div>
 						)}
-						<h2 className="font-display text-4xl font-black text-secondary-500 md:text-3xl lg:text-5xl tracking-wide text-center mt-4 lg:leading-tight md:text-left">
+						<h2
+							data-agility-field="title"
+							className="font-display text-4xl font-black text-secondary-500 md:text-3xl lg:text-5xl tracking-wide text-center mt-4 lg:leading-tight md:text-left"
+						>
 							{fields.title}
 						</h2>
-						<p className="mt-4 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-200">
+						<p
+							data-agility-field="content"
+							className="mt-4 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-200"
+						>
 							{fields.content}
 						</p>
 						{fields.primaryButton &&
