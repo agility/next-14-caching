@@ -118,8 +118,12 @@ const initializePreview = () => {
 				}
 
 				//TODO: send this event data to the parent window
-				console.log("*** Agility Preview Center ***: SPA navigation event:", currentPath)
-				invokeFrameEvent('navigation', { url: currentPath, pageID, contentID })
+				let fullUrl = location.href
+				if (fullUrl.indexOf("?") > -1) {
+					fullUrl = fullUrl.substring(0, fullUrl.indexOf("?"))
+				}
+				console.log("*** Agility Preview Center ***: SPA navigation event:", fullUrl)
+				invokeFrameEvent('navigation', { url: fullUrl, pageID, contentID })
 
 				//init the components that may have reloaded...
 				initComponents()

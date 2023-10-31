@@ -1,3 +1,28 @@
+body.agility-live-preview {
+  /*
+  scroll bar overrides
+  */
+  scrollbar-width: thin;
+  scrollbar-color: "aaa";
+}
+body.agility-live-preview::-webkit-scrollbar {
+  width: 10px; /* width of the entire scrollbar */
+  height: 10px;
+}
+body.agility-live-preview::-webkit-scrollbar-track {
+  background: rgba(221, 221, 221, 0); /* color of the tracking area */
+  border-radius: 20px;
+}
+body.agility-live-preview::-webkit-scrollbar-track:hover {
+  background: rgba(221, 221, 221, 0.3333333333); /* color of the tracking area */
+}
+body.agility-live-preview::-webkit-scrollbar-thumb {
+  border-radius: 20px; /* roundness of the scroll thumb */
+  background: rgba(170, 170, 170, 0.6666666667);
+}
+body.agility-live-preview::-webkit-scrollbar-thumb:hover {
+  background: rgba(170, 170, 170, 0.6);
+}
 body.agility-live-preview .agility-component {
   position: relative;
   transition: all 0.2s ease-in-out;

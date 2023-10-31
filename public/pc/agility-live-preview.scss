@@ -1,4 +1,37 @@
 body.agility-live-preview {
+	/*
+	scroll bar overrides
+	*/
+
+	scrollbar-width: thin;
+	scrollbar-color: "aaa";
+
+	&::-webkit-scrollbar {
+		width: 10px; /* width of the entire scrollbar */
+		height: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #dddddd00; /* color of the tracking area */
+		border-radius: 20px;
+	}
+
+	&::-webkit-scrollbar-track:hover {
+		background: #dddddd55; /* color of the tracking area */
+	}
+
+	&::-webkit-scrollbar {
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 20px; /* roundness of the scroll thumb */
+		background: #aaaaaaaa;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background: #aaaaaa99;
+	}
+
 	.agility-component {
 		position: relative;
 		transition: all 0.2s ease-in-out;
