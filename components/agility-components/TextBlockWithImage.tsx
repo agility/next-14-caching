@@ -25,6 +25,7 @@ const TextBlockWithImage: Module<ITextBlockWithImage> = ({module}) => {
 		if (isUrlAbsolute(url) === false) {
 			return (
 				<Link
+					data-agility-field="primaryButton"
 					href={url}
 					title={text}
 					target={target}
@@ -37,6 +38,7 @@ const TextBlockWithImage: Module<ITextBlockWithImage> = ({module}) => {
 			// else use anchor tag
 			return (
 				<a
+					data-agility-field="primaryButton"
 					href={url}
 					title={text}
 					target={target}
@@ -54,7 +56,7 @@ const TextBlockWithImage: Module<ITextBlockWithImage> = ({module}) => {
 	return (
 		<div className="relative px-8" data-agility-component={module.contentID}>
 			<div className="flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24 items-center">
-				<div className="md:w-6/12 flex-shrink-0 relative ">
+				<div className="md:w-6/12 flex-shrink-0 relative " data-agility-field="image">
 					{fields.primaryButton ? (
 						<Link href={fields.primaryButton.href} className="relative">
 							<AgilityPic

@@ -36,11 +36,6 @@ const initComponents = () => {
 		if (!component.classList.contains('agility-component')) {
 			component.classList.add('agility-component')
 
-			// //add a div inside this component to show the border and edit button
-			// const divInnerComp = document.createElement('div')
-			// divInnerComp.classList.add('agility-component-inner')
-			// component.appendChild(divInnerComp)
-
 			//edit button
 			const divCompEdit = document.createElement('button')
 			divCompEdit.classList.add('agility-component-edit')
@@ -85,6 +80,69 @@ const initComponents = () => {
 	})
 }
 
+/**
+ * Apply a content item to a component
+ */
+const applyContentItem = (contentItem) => {
+	const components = document.querySelectorAll('[data-agility-component]')
+	components.forEach((component) => {
+		const contentID = parseInt(component.getAttribute('data-agility-component'))
+		if (contentID !== contentItem.contentID) return
+
+
+		//now find all the fields within this component...
+		component.querySelectorAll('[data-agility-field]').forEach((field) => {
+
+			const fieldName = field.getAttribute('data-agility-field')
+
+			//find the field in the content item...
+			const fieldNameInContentItem = Object.keys(contentItem.values).find(key => key.toLowerCase() === fieldName.toLowerCase())
+			const fieldValue = contentItem.values[fieldNameInContentItem]
+
+			//apply the field value to the field...
+			if (typeof (fieldValue) === "string") {
+
+				if (fieldValue && fieldValue.startsWith("<a ") & fieldValue.endsWith("</a>")) {
+					//*** link field
+					field.innerHTML = fieldValue
+				} else {
+
+					if (field.hasAttribute("data-agility-html")) {
+						//*** html field
+						field.innerHTML = fieldValue
+					} else {
+						//*** regular field...
+						field.textContent = fieldValue
+					}
+				}
+			} else if (fieldValue.url) {
+				//***  image field
+
+				const img = field.querySelector('img')
+
+				if (img) {
+
+					//get rid of any source elements inside this if it's a picture tag
+					field.querySelectorAll('source').forEach((source) => source.remove())
+
+					//try to match the current image src to the new one...
+					const currentSrc = img.src
+					const currentSrcParts = currentSrc.split("?")
+					const newSrc = fieldValue.url + "?" + currentSrcParts[1]
+
+					img.loading = "eager"
+					img.alt = fieldValue.label
+					img.src = newSrc
+				}
+
+			} else {
+				console.warn("*** Agility Preview Center *** Cannot apply field value of field", fieldName, "value: ", fieldValue)
+			}
+		});
+
+	})
+}
+
 const initializePreview = () => {
 	isInitialized = true
 	//ONLY proceed if we are in an iframe with a legit parent
@@ -104,7 +162,6 @@ const initializePreview = () => {
 		if (location.pathname !== currentPath) {
 			currentPath = location.pathname
 			setTimeout(() => {
-
 
 				const agilityPageIDElem = document.querySelector('[data-agility-page]')
 				const agilityDynamicContentElem = document.querySelector('[data-agility-dynamic-content]')
@@ -127,7 +184,7 @@ const initializePreview = () => {
 
 				//init the components that may have reloaded...
 				initComponents()
-			}, 500)
+			}, 1000)
 		}
 	}, 100)
 
@@ -142,7 +199,6 @@ const initializePreview = () => {
 			case "ready":
 				console.log("*** Agility Preview Center *** Initialized 👍")
 
-
 				//init the css and preview panel
 				initCSSAndPreviewPanel()
 
@@ -150,6 +206,23 @@ const initializePreview = () => {
 				initComponents()
 
 				break
+			case "content-change": {
+				const contentItem = arg
+				applyContentItem(contentItem)
+				break
+			}
+
+			case "refresh":
+				console.log("*** Agility Preview Center *** Refreshing page...", location.href)
+				setTimeout(() => {
+
+					location.replace(location.href)
+				}, 1000)
+				break
+
+			default:
+				console.log("*** Agility Preview Center *** Unknown message type on website:", messageType, arg)
+				break;
 		}
 
 	})
