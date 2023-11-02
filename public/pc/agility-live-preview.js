@@ -184,7 +184,7 @@ const initializePreview = () => {
 
 				//init the components that may have reloaded...
 				initComponents()
-			}, 1000)
+			}, 1500)
 		}
 	}, 100)
 
