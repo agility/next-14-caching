@@ -22,10 +22,6 @@ interface Props {
 	sitemap: string
 }
 
-/**
- * Revalidate the header content every 10 seconds
- */
-export const revalidate = 10
 
 /**
  * Get the site header content from the main `siteheader` content item,
@@ -84,6 +80,7 @@ export const getHeaderContent = async ({ locale, sitemap }: Props) => {
 					path: node.path,
 				}
 			})
+
 	} catch (error) {
 		if (console) console.error("Could not load nested sitemap.", error)
 	}
