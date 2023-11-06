@@ -168,8 +168,14 @@ const initializePreview = () => {
 				let pageID = -1
 				let contentID = -1
 				if (agilityPageIDElem) {
-					pageID = agilityPageIDElem.getAttribute('data-agility-page')
+					pageID = parseInt(agilityPageIDElem.getAttribute('data-agility-page'))
 				}
+				//don't proceed if we don't have a pageID
+				if (isNaN(pageID) || pageID < 1) {
+					console.warn("*** Agility Preview Center *** - no pageID found on the `data-agility-page` element. \nMake sure you can an element is set up like this: data-agility-page='{{agilitypageid}}' .")
+					return
+				}
+
 				if (agilityDynamicContentElem) {
 					contentID = agilityDynamicContentElem.getAttribute('data-agility-dynamic-content')
 				}

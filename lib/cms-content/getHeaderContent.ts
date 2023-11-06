@@ -1,6 +1,5 @@
 import { ContentItem, ImageField } from "@agility/nextjs"
 import getAgilitySDK from "./getAgilitySDK"
-import { cache } from "react"
 
 interface ILink {
 	title: string
@@ -34,12 +33,11 @@ export const revalidate = 10
  *
  * Most solutions use nested linked content lists for navigation, but for simplicity, we are using the sitemap here.
  *
- * The header content is cached for 10 seconds using react's `cache` function
  *
  * @param {Props} { locale, sitemap }
  * @return {*}
  */
-export const getHeaderContent = cache(async ({ locale, sitemap }: Props) => {
+export const getHeaderContent = async ({ locale, sitemap }: Props) => {
 
 	const api = getAgilitySDK()
 
@@ -96,7 +94,7 @@ export const getHeaderContent = cache(async ({ locale, sitemap }: Props) => {
 		logo: contentItem.fields.logo,
 		links,
 	} as IHeaderData
-})
+}
 
 
 

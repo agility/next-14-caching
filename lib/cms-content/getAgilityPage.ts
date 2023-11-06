@@ -1,7 +1,5 @@
 import "server-only";
-import { AgilityPageProps } from "@agility/nextjs";
 import { getAgilityPageProps } from "@agility/nextjs/node";
-import { cache } from "react";
 import { getAgilityContext } from "./useAgilityContext";
 
 
@@ -10,9 +8,7 @@ export interface PageProps {
 	searchParams?: { [key: string]: string | string[] | undefined }
 }
 
-
-
-export const getAgilityPage = cache(async ({ params }: PageProps) => {
+export const getAgilityPage = async ({ params }: PageProps) => {
 
 	const { isPreview, locale, sitemap } = getAgilityContext()
 
@@ -22,5 +18,5 @@ export const getAgilityPage = cache(async ({ params }: PageProps) => {
 
 	return await getAgilityPageProps({ params, preview, locale })
 
-})
+}
 
