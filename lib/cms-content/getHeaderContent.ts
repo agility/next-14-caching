@@ -75,9 +75,12 @@ export const getHeaderContent = async ({ locale, sitemap }: Props) => {
 		links = nodes
 			.filter((node: any) => node.visible.menu)
 			.map((node: any) => {
+
+				const path = node.path
+
 				return {
 					title: node.menuText || node.title,
-					path: node.path,
+					path: path === "/home" ? "/" : path,
 				}
 			})
 
