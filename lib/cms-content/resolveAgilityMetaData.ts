@@ -17,7 +17,10 @@ interface Props {
 export const resolveAgilityMetaData = async ({ agilityData, locale, sitemap, isDevelopmentMode, isPreview, parent }: Props): Promise<Metadata> => {
 
 	const agilitySDK = getAgilitySDK()
-	const header = await getHeaderContent({ locale, sitemap })
+
+	const cacheBuster = isPreview ? new Date().toISOString() : ""
+
+	const header = await getHeaderContent({ locale, sitemap, cacheBuster })
 	const ogImages = (await parent).openGraph?.images || []
 
 	//#region *** resolve open graph stuff from dynamic pages/layouts ***
@@ -93,6 +96,8 @@ export const resolveAgilityMetaData = async ({ agilityData, locale, sitemap, isD
 		}
 	}
 	//#endregion
+
+
 
 	const metaData: Metadata = {
 		title: `${agilityData.sitemapNode?.title} | ${header?.siteName || ""}`,

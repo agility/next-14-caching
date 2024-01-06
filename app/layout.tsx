@@ -20,10 +20,10 @@ const inter = Inter({
 export default async function RootLayout({children}: {children: React.ReactNode}) {
 	const {locale, sitemap, isDevelopmentMode, isPreview} = useAgilityContext()
 
-	const header = await getHeaderContent({sitemap, locale})
+	const cacheBuster = isPreview ? new Date().toISOString() : ""
+	const header = await getHeaderContent({sitemap, locale, cacheBuster})
 
 	const isPreviewRequested = false
-
 	return (
 		<html lang="en" className={inter.className}>
 			<body data-agility-guid={process.env.AGILITY_GUID}>
@@ -32,8 +32,10 @@ export default async function RootLayout({children}: {children: React.ReactNode}
 					{!isPreviewRequested && (
 						<div id="site">
 							<PreviewBar {...{isDevelopmentMode, isPreview}} />
+
 							<div className="flex flex-col min-h-screen">
 								<SiteHeader {...{header}} />
+
 								<main className={`flex-grow`}>{children}</main>
 								<SiteFooter />
 							</div>

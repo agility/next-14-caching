@@ -147,6 +147,7 @@ const initializePreview = () => {
 	isInitialized = true
 	//ONLY proceed if we are in an iframe with a legit parent
 	if (!window.parent || !window.parent.postMessage) return
+	if (window.self === window.top) return
 
 	//get the guid from the body element data attribute
 	agilityGuid = document.body.getAttribute('data-agility-guid')
@@ -154,6 +155,8 @@ const initializePreview = () => {
 		console.error("*** Agility Preview Center *** - no guid found on body element. \nMake sure your body element is set up like this: <body data-agility-guid='{{agilityguid}}'>")
 		return
 	}
+
+
 	console.log("*** Agility Preview Center *** Initializing for instance guid:", agilityGuid)
 
 	let currentPath = location.pathname

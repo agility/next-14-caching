@@ -1,5 +1,8 @@
 import { ContentItem, ImageField } from "@agility/nextjs"
 import getAgilitySDK from "./getAgilitySDK"
+import { unstable_cache } from "next/cache"
+import { getAgilityContext } from "./useAgilityContext"
+import { cacheConfig } from "./cacheConfig"
 
 interface ILink {
 	title: string
@@ -20,8 +23,8 @@ interface IHeader {
 interface Props {
 	locale: string
 	sitemap: string
+	cacheBuster: string
 }
-
 
 /**
  * Get the site header content from the main `siteheader` content item,
@@ -30,10 +33,15 @@ interface Props {
  * Most solutions use nested linked content lists for navigation, but for simplicity, we are using the sitemap here.
  *
  *
- * @param {Props} { locale, sitemap }
+ * @param {Props} { locale, sitemap, cacheBuster }
  * @return {*}
  */
-export const getHeaderContent = async ({ locale, sitemap }: Props) => {
+export const getHeaderContent = unstable_cache(async ({ locale, sitemap, cacheBuster }: Props) => {
+
+	const { isPreview: preview } = getAgilityContext()
+
+	console.log("GET header.  preview?", preview)
+
 
 	const api = getAgilitySDK()
 
@@ -94,7 +102,7 @@ export const getHeaderContent = async ({ locale, sitemap }: Props) => {
 		logo: contentItem.fields.logo,
 		links,
 	} as IHeaderData
-}
+}, [], { revalidate: cacheConfig.defaultCacheDuration })
 
 
 

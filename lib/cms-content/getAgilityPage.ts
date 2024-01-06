@@ -2,21 +2,28 @@ import "server-only";
 import { getAgilityPageProps } from "@agility/nextjs/node";
 import { getAgilityContext } from "./useAgilityContext";
 
-
 export interface PageProps {
 	params: { slug: string[] }
 	searchParams?: { [key: string]: string | string[] | undefined }
 }
 
-export const getAgilityPage = async ({ params }: PageProps) => {
+export interface CachedPageProps extends PageProps {
+	cacheBuster: string
+}
 
-	const { isPreview, locale, sitemap } = getAgilityContext()
+export const getAgilityPage = async ({ params }: CachedPageProps) => {
 
-	const preview = isPreview
+	const { isPreview: preview, locale } = getAgilityContext()
 
 	if (!params.slug) params.slug = [""]
 
-	return await getAgilityPageProps({ params, preview, locale })
+	const page = await getAgilityPageProps({ params, preview, locale })
+
+	if (page.page) {
+		page.page.title = new Date().toISOString()
+	}
+
+	return page
 
 }
 
