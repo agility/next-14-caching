@@ -12,6 +12,8 @@ import InlineError from "components/common/InlineError"
 import {cacheConfig} from "lib/cms/cacheConfig"
 
 export const revalidate = cacheConfig.defaultCacheDuration
+export const runtime = "nodejs"
+export const dynamic = "force-static"
 
 /**
  * Generate metadata for this page
