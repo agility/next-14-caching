@@ -1,7 +1,7 @@
 import {getPageTemplate} from "components/agility-layouts"
-import {PageProps, getAgilityPage} from "lib/cms-content/getAgilityPage"
+import {PageProps, getAgilityPage} from "lib/cms/getAgilityPage"
 import {getHeaderContent} from "lib/cms-content/getHeaderContent"
-import {getAgilityContext} from "lib/cms-content/useAgilityContext"
+import {getAgilityContext} from "lib/cms/useAgilityContext"
 
 import {Metadata, ResolvingMetadata} from "next"
 
@@ -21,8 +21,8 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 	// read route params
 	const {locale, sitemap, isDevelopmentMode, isPreview} = getAgilityContext()
-	const cacheBuster = isPreview ? new Date().toISOString() : ""
-	const agilityData = await getAgilityPage({params, cacheBuster})
+
+	const agilityData = await getAgilityPage({params})
 
 	if (!agilityData.page) return {}
 	return await resolveAgilityMetaData({agilityData, locale, sitemap, isDevelopmentMode, isPreview, parent})
@@ -30,9 +30,7 @@ export async function generateMetadata(
 
 export default async function Page({params, searchParams}: PageProps) {
 	//const {isPreview} = getAgilityContext()
-	const isPreview = false
-	const cacheBuster = isPreview ? new Date().toISOString() : ""
-	const agilityData = await getAgilityPage({params, cacheBuster})
+	const agilityData = await getAgilityPage({params})
 
 	//if the page is not found...
 	if (!agilityData.page) return NotFound()

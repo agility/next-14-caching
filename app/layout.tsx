@@ -2,7 +2,7 @@ import LoadingWidget from "components/common/LoadingWidget"
 import PreviewBar from "components/common/PreviewBar"
 import SiteFooter from "components/common/SiteFooter"
 import SiteHeader from "components/common/SiteHeader"
-import {useAgilityContext} from "lib/cms-content/useAgilityContext"
+import {useAgilityContext} from "lib/cms/useAgilityContext"
 
 import {Inter} from "next/font/google"
 
@@ -20,8 +20,7 @@ const inter = Inter({
 export default async function RootLayout({children}: {children: React.ReactNode}) {
 	const {locale, sitemap, isDevelopmentMode, isPreview} = useAgilityContext()
 
-	const cacheBuster = isPreview ? new Date().toISOString() : ""
-	const header = await getHeaderContent({sitemap, locale, cacheBuster})
+	const header = await getHeaderContent({sitemap, locale})
 
 	const isPreviewRequested = false
 	return (

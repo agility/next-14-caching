@@ -1,8 +1,11 @@
 import { ContentItem, ImageField } from "@agility/nextjs"
-import getAgilitySDK from "./getAgilitySDK"
+
+import getAgilitySDK from "../cms/getAgilitySDK"
 import { unstable_cache } from "next/cache"
-import { getAgilityContext } from "./useAgilityContext"
-import { cacheConfig } from "./cacheConfig"
+import { getAgilityContext } from "../cms/useAgilityContext"
+import { cacheConfig } from "../cms/cacheConfig"
+import { getContentList } from "lib/cms/getContentList"
+
 
 interface ILink {
 	title: string
@@ -23,7 +26,6 @@ interface IHeader {
 interface Props {
 	locale: string
 	sitemap: string
-	cacheBuster: string
 }
 
 /**
@@ -33,15 +35,12 @@ interface Props {
  * Most solutions use nested linked content lists for navigation, but for simplicity, we are using the sitemap here.
  *
  *
- * @param {Props} { locale, sitemap, cacheBuster }
+ * @param {Props} { locale, sitemap }
  * @return {*}
  */
-export const getHeaderContent = unstable_cache(async ({ locale, sitemap, cacheBuster }: Props) => {
+export const getHeaderContent = async ({ locale, sitemap }: Props) => {
 
-	const { isPreview: preview } = getAgilityContext()
-
-	console.log("GET header.  preview?", preview)
-
+	const { isPreview } = getAgilityContext()
 
 	const api = getAgilitySDK()
 
@@ -53,7 +52,7 @@ export const getHeaderContent = unstable_cache(async ({ locale, sitemap, cacheBu
 
 	try {
 		// try to fetch our site header
-		let header = await api.getContentList({
+		let header = await getContentList({
 			referenceName: "siteheader",
 			languageCode: locale,
 			take: 1,
@@ -102,7 +101,7 @@ export const getHeaderContent = unstable_cache(async ({ locale, sitemap, cacheBu
 		logo: contentItem.fields.logo,
 		links,
 	} as IHeaderData
-}, [], { revalidate: cacheConfig.defaultCacheDuration })
+}
 
 
 

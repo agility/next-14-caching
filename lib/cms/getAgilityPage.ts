@@ -7,21 +7,18 @@ export interface PageProps {
 	searchParams?: { [key: string]: string | string[] | undefined }
 }
 
-export interface CachedPageProps extends PageProps {
-	cacheBuster: string
-}
 
-export const getAgilityPage = async ({ params }: CachedPageProps) => {
+export const getAgilityPage = async ({ params }: PageProps) => {
 
 	const { isPreview: preview, locale } = getAgilityContext()
 
 	if (!params.slug) params.slug = [""]
 
-	const page = await getAgilityPageProps({ params, preview, locale })
-
-	if (page.page) {
-		page.page.title = new Date().toISOString()
-	}
+	const page = await getAgilityPageProps({
+		params, preview, locale, apiOptions: {
+			contentLinkDepth: 0
+		}
+	})
 
 	return page
 

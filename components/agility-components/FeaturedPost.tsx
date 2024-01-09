@@ -1,16 +1,20 @@
 import Link from "next/link"
 import {DateTime} from "luxon"
 import {stripHtml} from "string-strip-html"
-import {AgilityPic, Module, ContentItem, AgilityImage} from "@agility/nextjs"
+import {AgilityPic, Module, ContentItem, AgilityImage, UnloadedModuleProps} from "@agility/nextjs"
 import {IPost} from "../../lib/types/IPost"
+import {getContentItem} from "lib/cms/getContentItem"
 
 interface IFeaturedPostModule {
 	featuredPost?: ContentItem<IPost>
 }
 
-const FeaturedPost: Module<IFeaturedPostModule> = ({module}) => {
-	// get module fields
-	const {fields} = module
+const FeaturedPost = async ({module, languageCode}: UnloadedModuleProps) => {
+	const {fields, contentID} = await getContentItem<IFeaturedPostModule>({
+		contentID: module.contentid,
+		languageCode,
+		contentLinkDepth: 2,
+	})
 
 	// get featured post
 	const {featuredPost} = fields

@@ -2,7 +2,7 @@ import { AgilityPageProps, ImageField } from "@agility/nextjs"
 import { ContentItem } from "@agility/content-fetch"
 import { Metadata, ResolvingMetadata } from "next"
 import { getHeaderContent } from "./getHeaderContent"
-import getAgilitySDK from "./getAgilitySDK"
+import getAgilitySDK from "../cms/getAgilitySDK"
 import ReactHtmlParser from "html-react-parser"
 
 interface Props {
@@ -18,9 +18,7 @@ export const resolveAgilityMetaData = async ({ agilityData, locale, sitemap, isD
 
 	const agilitySDK = getAgilitySDK()
 
-	const cacheBuster = isPreview ? new Date().toISOString() : ""
-
-	const header = await getHeaderContent({ locale, sitemap, cacheBuster })
+	const header = await getHeaderContent({ locale, sitemap })
 	const ogImages = (await parent).openGraph?.images || []
 
 	//#region *** resolve open graph stuff from dynamic pages/layouts ***
@@ -100,6 +98,7 @@ export const resolveAgilityMetaData = async ({ agilityData, locale, sitemap, isD
 
 
 	const metaData: Metadata = {
+		metadataBase: new URL('https://preview-tests-nov-2023.vercel.app'),
 		title: `${agilityData.sitemapNode?.title} | ${header?.siteName || ""}`,
 		description: agilityData.page?.seo?.metaDescription,
 		keywords: agilityData.page?.seo?.metaKeywords,

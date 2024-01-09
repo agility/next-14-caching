@@ -2,15 +2,15 @@
 # yarn lockfile v1
 
 
-"@agility/content-fetch@^2.0.0-rc21":
-  version "2.0.0-rc21"
-  resolved "https://registry.yarnpkg.com/@agility/content-fetch/-/content-fetch-2.0.0-rc21.tgz#5ab5948bd61a6747b37ade01e1569d20a559170e"
-  integrity sha512-smhSnNoYlIHoX8Egwa+cHIE1irXzTe1qH8cW6/RHKqfe7UBK+tN3yqqGEB+vBjbkOUipZEfbf+UthoEHtgr7Qg==
+"@agility/content-fetch@2.0.0-rc23":
+  version "2.0.0-rc23"
+  resolved "https://registry.yarnpkg.com/@agility/content-fetch/-/content-fetch-2.0.0-rc23.tgz#bfa95ef4ed44b50ca52f7a45259455d9d9f9761c"
+  integrity sha512-OTaBDE8oNnX3G3xsCapJZ+TsacLxv0gzINuCT2lcGbD9I3IwpEWZcKOZ7DEtqxBKUEV/OkOAnCb4aDA5YxE1gw==
 
-"@agility/nextjs@14.0.0-rc1":
-  version "14.0.0-rc1"
-  resolved "https://registry.yarnpkg.com/@agility/nextjs/-/nextjs-14.0.0-rc1.tgz#6cb19070891e90292af5036a474ba43a04811c99"
-  integrity sha512-WsbYTqdxe0FBUHeWEDQM7D1nTJFXqslri5aVzXmidruSCCfK9s1UvtiH54lzudwBTB//a7ad7zkTqLtWtkOWOw==
+"@agility/nextjs@14.0.0-rc2":
+  version "14.0.0-rc2"
+  resolved "https://registry.yarnpkg.com/@agility/nextjs/-/nextjs-14.0.0-rc2.tgz#b3425a3a22d16d5306be80421a208ecd5578d588"
+  integrity sha512-QqwSQDtotwLJ3vO421oI5FI0BSlMmeqedvINMiNvjXjZk1Aa55nLbgOGQmHtnm0HHHzQMd/KC/fytaTLoqFaaw==
 
 "@alloc/quick-lru@^5.2.0":
   version "5.2.0"

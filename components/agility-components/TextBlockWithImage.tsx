@@ -1,6 +1,16 @@
 import React from "react"
-import {AgilityPic, ImageField, Module, URLField} from "@agility/nextjs"
+import {
+	AgilityPic,
+	ContentItem,
+	ImageField,
+	Module,
+	URLField,
+	UnloadedModule,
+	UnloadedModuleProps,
+} from "@agility/nextjs"
 import Link from "next/link"
+import getAgilitySDK from "lib/cms/getAgilitySDK"
+import {getContentItem} from "lib/cms/getContentItem"
 
 interface ITextBlockWithImage {
 	title: string
@@ -12,9 +22,16 @@ interface ITextBlockWithImage {
 	highPriority?: string
 }
 
-const TextBlockWithImage: Module<ITextBlockWithImage> = ({module}) => {
-	// get module fields
-	const {fields} = module
+/**
+ * Text Block With Image.  This is "unloaded" since we have set the depth property to 0 when fetching the page.
+ * @param param0
+ * @returns
+ */
+const TextBlockWithImage = async ({module, languageCode}: UnloadedModuleProps) => {
+	const {fields, contentID} = await getContentItem<ITextBlockWithImage>({
+		contentID: module.contentid,
+		languageCode,
+	})
 
 	// function to check whether or not the url is absolute
 	const isUrlAbsolute = (url: string) => url.indexOf("://") > 0 || url.indexOf("//") === 0
@@ -51,10 +68,10 @@ const TextBlockWithImage: Module<ITextBlockWithImage> = ({module}) => {
 	}
 
 	//determine if the image should be high priority
-	const priority = module.fields.highPriority === "true"
+	const priority = fields.highPriority === "true"
 
 	return (
-		<div className="relative px-8" data-agility-component={module.contentID}>
+		<div className="relative px-8" data-agility-component={contentID}>
 			<div className="flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24 items-center">
 				<div className="md:w-6/12 flex-shrink-0 relative " data-agility-field="image">
 					{fields.primaryButton ? (
