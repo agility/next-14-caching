@@ -1,5 +1,11 @@
 import { ContentItem, ImageField } from "@agility/nextjs"
-import getAgilitySDK from "./getAgilitySDK"
+
+import getAgilitySDK from "../cms/getAgilitySDK"
+import { unstable_cache } from "next/cache"
+import { getAgilityContext } from "../cms/useAgilityContext"
+import { cacheConfig } from "../cms/cacheConfig"
+import { getContentList } from "lib/cms/getContentList"
+
 
 interface ILink {
 	title: string
@@ -22,7 +28,6 @@ interface Props {
 	sitemap: string
 }
 
-
 /**
  * Get the site header content from the main `siteheader` content item,
  * as well as the nested sitemap for our navigation links.
@@ -35,6 +40,8 @@ interface Props {
  */
 export const getHeaderContent = async ({ locale, sitemap }: Props) => {
 
+	const { isPreview } = getAgilityContext()
+
 	const api = getAgilitySDK()
 
 	// set up content item
@@ -45,7 +52,7 @@ export const getHeaderContent = async ({ locale, sitemap }: Props) => {
 
 	try {
 		// try to fetch our site header
-		let header = await api.getContentList({
+		let header = await getContentList({
 			referenceName: "siteheader",
 			languageCode: locale,
 			take: 1,

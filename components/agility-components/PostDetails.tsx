@@ -1,16 +1,9 @@
 import React from "react"
-import {AgilityPic, ContentItem, ImageField, ModuleWithDynamic, renderHTML} from "@agility/nextjs"
-import {IPost} from "../../lib/types/IPost"
-import Image from "next/image"
+import {AgilityPic, UnloadedModuleProps, renderHTML} from "@agility/nextjs"
 
 import {DateTime} from "luxon"
-import {PageProps, getAgilityPage} from "lib/cms-content/getAgilityPage"
-import {getHeaderContent} from "lib/cms-content/getHeaderContent"
-import {getAgilityContext} from "lib/cms-content/useAgilityContext"
-import {ResolvingMetadata, Metadata} from "next"
-import Head from "next/head"
 
-const PostDetails: ModuleWithDynamic<any, IPost> = ({dynamicPageItem, languageCode}) => {
+const PostDetails = async ({dynamicPageItem}: UnloadedModuleProps) => {
 	if (!dynamicPageItem) {
 		return <div>Post not found</div>
 	}

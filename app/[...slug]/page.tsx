@@ -1,7 +1,7 @@
 import {getPageTemplate} from "components/agility-layouts"
-import {PageProps, getAgilityPage} from "lib/cms-content/getAgilityPage"
+import {PageProps, getAgilityPage} from "lib/cms/getAgilityPage"
 import {getHeaderContent} from "lib/cms-content/getHeaderContent"
-import {getAgilityContext} from "lib/cms-content/useAgilityContext"
+import {getAgilityContext} from "lib/cms/useAgilityContext"
 
 import {Metadata, ResolvingMetadata} from "next"
 
@@ -10,10 +10,7 @@ import Head from "next/head"
 import NotFound from "./not-found"
 import InlineError from "components/common/InlineError"
 
-/**
- * revalidate this page every 10 seconds
- */
-export const revalidate = 10
+//export const revalidateXYZ = 120
 
 /**
  * Generate metadata for this page
@@ -24,12 +21,15 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 	// read route params
 	const {locale, sitemap, isDevelopmentMode, isPreview} = getAgilityContext()
+
 	const agilityData = await getAgilityPage({params})
+
 	if (!agilityData.page) return {}
 	return await resolveAgilityMetaData({agilityData, locale, sitemap, isDevelopmentMode, isPreview, parent})
 }
 
 export default async function Page({params, searchParams}: PageProps) {
+	//const {isPreview} = getAgilityContext()
 	const agilityData = await getAgilityPage({params})
 
 	//if the page is not found...
