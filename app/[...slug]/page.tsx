@@ -9,8 +9,9 @@ import {resolveAgilityMetaData} from "lib/cms-content/resolveAgilityMetaData"
 import Head from "next/head"
 import NotFound from "./not-found"
 import InlineError from "components/common/InlineError"
+import {cacheConfig} from "lib/cms/cacheConfig"
 
-//export const revalidateXYZ = 120
+export const revalidate = cacheConfig.defaultCacheDuration
 
 /**
  * Generate metadata for this page
