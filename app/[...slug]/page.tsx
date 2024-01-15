@@ -1,12 +1,10 @@
 import {getPageTemplate} from "components/agility-layouts"
 import {PageProps, getAgilityPage} from "lib/cms/getAgilityPage"
-import {getHeaderContent} from "lib/cms-content/getHeaderContent"
 import {getAgilityContext} from "lib/cms/useAgilityContext"
 
 import {Metadata, ResolvingMetadata} from "next"
 
 import {resolveAgilityMetaData} from "lib/cms-content/resolveAgilityMetaData"
-import Head from "next/head"
 import NotFound from "./not-found"
 import InlineError from "components/common/InlineError"
 import {cacheConfig} from "lib/cms/cacheConfig"
