@@ -6,9 +6,9 @@ This is sample Next.js starter site that uses Agility CMS and aims to be a found
 
 [New to Agility CMS? Sign up for a FREE account](https://agilitycms.com/free)
 
-## 📢 UPDATED FOR NEXT.JS 13.5 📢
+## 📢 UPDATED FOR NEXT.JS 14 📢
 
-- We have updated this starter for Next.js 13. It is using a pre-release version of the [@agility/nextjs](https://www.npmjs.com/package/@agility/nextjs) npm package specialized for app router.
+- We have updated this starter for Next.js 13. It is using a pre-release version of the [@agility/nextjs](https://www.npmjs.com/package/@agility/nextjs) npm package specialized for app router amd caching.
 
 ## About This Starter
 
