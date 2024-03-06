@@ -13,16 +13,10 @@ This is sample Next.js starter site that uses Agility CMS and aims to be a found
 ## About This Starter
 
 - Uses our [`@agility/nextjs`](https://www.npmjs.com/package/@agility/nextjs) package to make getting started with Agility CMS and Next.js easy
-- Support for Next.js 13 and React 18
-- Connected to a sample Agility CMS Instance for sample content & pages
-- Uses the `getStaticProps` function from Next.js to allow for full SSG (Static Site Generation)
-- Supports [`next/image`](https://nextjs.org/docs/api-reference/next/image) for image optimization using the `<Image />` component or the next.js `<Image />` component for images that aren't stored in Agility.
-- Supports full [Page Management](https://help.agilitycms.com/hc/en-us/articles/360055805831)
+- Support for Next.js 14 and app or pages router
+- Support for fetch caching
+- Supports routing from Agility sitemaps
 - Supports Preview Mode
-- Supports the `next/font` package
-- Uses the `revalidate` and `fallback` properties to enable [ISR (Incremental Static Regeneration)](https://nextjs.org/docs/basic-features/data-fetching#incremental-static-regeneration) builds
-- Provides a functional structure that dynamically routes each page based on the request, loads a Page Templates dynamically, and also dynamically loads and renders appropriate Agility CMS Page Modules (as React components)
-- Supports component level data fetching.
 
 ### Tailwind CSS
 
