@@ -4,7 +4,7 @@ import SiteFooter from "components/common/SiteFooter"
 import SiteHeader from "components/common/SiteHeader"
 import { useAgilityContext } from "lib/cms/useAgilityContext"
 
-import { Inter } from "next/font/google"
+import { JetBrains_Mono } from "next/font/google"
 
 import "/styles/globals.css"
 import "/styles/nprogress.min.css"
@@ -12,7 +12,7 @@ import "/styles/nprogress.min.css"
 import { getHeaderContent } from "lib/cms-content/getHeaderContent"
 import Script from "next/script"
 
-const inter = Inter({
+const inter = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-inter",
 })
