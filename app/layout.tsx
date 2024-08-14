@@ -49,12 +49,12 @@ export default async function RootLayout({
         </div>
 
         {/* Prod */}
-        {/* <Script
+        <Script
           async
           src="https://unpkg.com/@agility/web-studio-sdk@latest/dist/index.js"
-        /> */}
+        />
         {/* Dev */}
-        <Script async src="http://127.0.0.1:8080/index.js" />
+        {/* <Script async src="http://127.0.0.1:8080/index.js" /> */}
       </body>
     </html>
   )
