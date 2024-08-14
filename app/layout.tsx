@@ -4,7 +4,7 @@ import SiteFooter from "components/common/SiteFooter"
 import SiteHeader from "components/common/SiteHeader"
 import { useAgilityContext } from "lib/cms/useAgilityContext"
 
-import { JetBrains_Mono } from "next/font/google"
+import { Mulish } from "next/font/google"
 
 import "/styles/globals.css"
 import "/styles/nprogress.min.css"
@@ -12,9 +12,9 @@ import "/styles/nprogress.min.css"
 import { getHeaderContent } from "lib/cms-content/getHeaderContent"
 import Script from "next/script"
 
-const inter = JetBrains_Mono({
+const inter = Mulish({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-mulish",
 })
 
 export default async function RootLayout({
@@ -47,11 +47,14 @@ export default async function RootLayout({
             </div>
           )}
         </div>
-        {/* //TODO: pull this script from NPM eventually, or CDN */}
-        <Script
+
+        {/* Prod */}
+        {/* <Script
           async
           src="https://unpkg.com/@agility/web-studio-sdk@latest/dist/index.js"
-        />
+        /> */}
+        {/* Dev */}
+        <Script async src="http://127.0.0.1:8080/index.js" />
       </body>
     </html>
   )
