@@ -56,6 +56,7 @@ const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
             </h1>
             <div
               data-agility-field="content"
+              data-agility-html
               className="prose max-w-full mb-20"
               dangerouslySetInnerHTML={renderHTML(post.content)}
             />
