@@ -45,7 +45,10 @@ const PostDetails = async ({ dynamicPageItem }: UnloadedModuleProps) => {
               {category}
             </div>
             <div className="border-b-2 border-primary-500 w-8"></div>
-            <div className="mt-4 uppercase text-gray-600 italic font-semibold text-xs">
+            <div
+              data-agility-field="date"
+              className="mt-4 uppercase text-gray-600 italic font-semibold text-xs"
+            >
               {dateStr}
             </div>
             <h1
